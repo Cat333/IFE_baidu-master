@@ -20,7 +20,7 @@
 </head>
 <body>
     <div>
-        <input id="name" type="text" value="姓名">
+        <input id="name" type="text" value="姓名" >
         <button id="submit-btn">Submit</button>
     </div>
 
@@ -28,7 +28,9 @@
         var btn = document.querySelector('#submit-btn');
         var inp = document.querySelector('#name');
         inp.onfocus = function(){
-            this.value ='';
+            if(this.value == '姓名'){
+                this.value ='';
+            }
         }
         inp.onblur = function(){
             if(this.value == '' ){
@@ -41,7 +43,23 @@
             }else{
                 console.log(inp.value);
             }
-
+        }
+        inp.onkeypress =  function (e)
+        {
+            var key;
+            if(window.event) // IE
+            {
+                key = e.keyCode
+            }
+            else if(e.which) // Netscape/Firefox/Opera
+            {
+                key = e.which
+            }
+            if(key == 13){
+                console.log(inp.value);
+            }else if(key == 27 || key == 96){
+                inp.value = '';
+            }
         }
     </script>
 </body>
